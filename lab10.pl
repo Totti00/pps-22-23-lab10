@@ -84,8 +84,25 @@ sublist(nil, _).
 sublist(cons(H, T), L) :- search(H, L), sublist(T, L).
 % sublist(cons(a, cons(b, nil)), cons(c, cons(b, cons(a, nil))))
 
+%4.1
+% seq(N, E, List)
+seq(zero, _, nil).
+seq(s(N), E, cons(E, T)) :- seq(N, E, T).
+%seq(s(s(s(zero))), a, cons(a,cons(a,cons(a,nil)))).
 
+%4.2
+% seqR(N, List)
+seqR(zero, nil).
+seqR(s(N), cons(H, T)) :- N = H, seqR(N, T).
+% seqR(s(s(s(zero))), cons(s(s(zero)),cons(s(zero),cons(zero,nil))))
 
+%4.3
+% seqR2(N, List)
+last(nil, N, cons(N, nil)).
+last(cons(H, T), N, cons(H, T1)) :- last(T, N, T1).
 
-
+seqR2(N, L) :- seqR2(N, nil, L).
+seqR2(zero, L, L).
+seqR2(s(N), L, R) :- seqR2(N, L, Last), last(Last, N, R).
+%seqR2(s(s(s(zero))), cons(zero,cons(s(zero),cons(s(s(zero) ),nil))))
 
