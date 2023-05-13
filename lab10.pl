@@ -69,6 +69,22 @@ minMax(cons(H, T), TempMin, TempMax, Min, Max) :- greater(TempMin, H), minMax(T,
 
 %3.1
 % same(List1, List2)
+same(L, L).
+% same(cons(zero, nil), cons(zero, nil))
+
+%3.2
+% all_bigger(List1, List2)
+allBigger(nil, nil).
+allBigger(cons(H, T), cons(H1, T1)) :- greater(H, H1), allBigger(T, T1).
+% allBigger(cons(s(s(zero)), cons(s(zero), nil)), cons(s(zero), cons(zero, nil)))
+
+%3.3
+% sublist(List1, List2)
+sublist(nil, _).
+sublist(cons(H, T), L) :- search(H, L), sublist(T, L).
+% sublist(cons(a, cons(b, nil)), cons(c, cons(b, cons(a, nil))))
+
+
 
 
 
